@@ -27,7 +27,12 @@ export type HydratedUser = {
   bot?: BotInformation;
 };
 
-export const userHydration: Hydrate<ApiUser, HydratedUser> = {
+type NApiUser = ApiUser & {
+  display_name: string,
+  discriminator: string
+}
+
+export const userHydration: Hydrate<NApiUser, HydratedUser> = {
   keyMapping: {
     _id: "id",
     display_name: "displayName",

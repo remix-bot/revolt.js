@@ -3,6 +3,10 @@ import { HydratedUser } from "../hydration";
 
 import { ClassCollection } from ".";
 
+type APIUser = {
+  discriminator: string;
+}
+
 /**
  * Collection of Users
  */
@@ -39,7 +43,7 @@ export class UserCollection extends ClassCollection<User, HydratedUser> {
    * @param data Data
    * @param isNew Whether this object is new
    */
-  getOrCreate(id: string, data: API.User) {
+  getOrCreate(id: string, data: API.User | APIUser) {
     if (this.has(id)) {
       return this.get(id)!;
     } else {
